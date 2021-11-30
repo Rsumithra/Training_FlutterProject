@@ -1,4 +1,4 @@
-import 'package:create_watchlist_flutter/constants/strings.dart';
+import 'package:create_watchlist_flutter/constants/constants.dart';
 import 'package:create_watchlist_flutter/pages/tab_four.dart';
 import 'package:create_watchlist_flutter/pages/tab_one.dart';
 import 'package:create_watchlist_flutter/pages/tab_three.dart';
@@ -21,26 +21,22 @@ class _MyappState extends State<Myapp> {
         home: DefaultTabController(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Contact App'),
-          bottom: TabBar(
+          title: const Text('Contact App'),
+          bottom: const TabBar(
             indicatorColor: Colors.blue,
+            labelColor: Colors.black26,
             tabs: [
-              Tab(text: Strings.tab_name + "1"),
-              Tab(text: Strings.tab_name + "2"),
+              Tab(text: Constants.tab_name + "1"),
+              Tab(text: Constants.tab_name + "2"),
               Tab(
-                text: Strings.tab_name + "3",
+                text: Constants.tab_name + "3",
               ),
-              Tab(text: Strings.tab_name + "4")
+              Tab(text: Constants.tab_name + "4")
             ],
           ),
         ),
-        body: TabBarView(
-          children: const [
-            Contactone(),
-            Contacttwo(),
-            Contactthree(),
-            ContactFour()
-          ],
+        body: const TabBarView(
+          children: [Contactone(), Contacttwo(), Contactthree(), ContactFour()],
         ),
       ),
       length: 4,

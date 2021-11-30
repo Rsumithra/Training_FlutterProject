@@ -1,7 +1,5 @@
-import 'dart:convert';
-
 import 'package:create_watchlist_flutter/models/contacts.dart';
-import '../networking/api_call.dart';
+import 'package:create_watchlist_flutter/constants/constants.dart';
 import 'package:flutter/material.dart';
 import '../repository/contactsrespository.dart';
 
@@ -14,6 +12,7 @@ class Contactone extends StatefulWidget {
 
 class _ContactoneState extends State<Contactone> {
   List<Contacts> _contacts = [];
+  List<Contacts> firstset = [];
   ContactsRespository contval = ContactsRespository();
   @override
   void initState() {
@@ -21,6 +20,7 @@ class _ContactoneState extends State<Contactone> {
     contval.getContacts().then((contacts) {
       setState(() {
         _contacts = contacts;
+        firstset = _contacts.sublist(0, 25);
       });
     });
   }
@@ -29,25 +29,23 @@ class _ContactoneState extends State<Contactone> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _contacts.isEmpty
-          ? Center(child: Text("No data Available"))
-          : Container(
-              child: ListView.builder(
-                  itemCount: _contacts.length,
-                  itemBuilder: (context, index) {
-                    Contacts con = _contacts[index];
-                    return Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(15.0),
-                      ),
-                      elevation: 10,
-                      child: ListTile(
-                        title: Text(con.name),
-                        subtitle: Text(con.contacts),
-                        trailing:
-                            Image.network("https://picsum.photos/200/300"),
-                      ),
-                    );
-                  })),
+          ? const Center(child: CircularProgressIndicator.adaptive())
+          : ListView.builder(
+              itemCount: firstset.length,
+              itemBuilder: (context, index) {
+                Contacts con = firstset[index];
+                return Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15.0),
+                  ),
+                  elevation: 10,
+                  child: ListTile(
+                    title: Text(con.name),
+                    subtitle: Text(con.contacts),
+                    trailing: Image.network(Constants.img_url),
+                  ),
+                );
+              }),
     );
   }
 }

@@ -1,12 +1,5 @@
 import 'dart:io';
-
-import '../models/contacts.dart';
-
-import 'package:create_watchlist_flutter/constants/strings.dart';
-
 import 'package:http/http.dart' as http;
-
-import 'dart:convert';
 import 'dart:async';
 
 class Api_call {
@@ -45,19 +38,3 @@ class Api_call {
     }
   }
 }
-
-// class Api_call {
-//   static Future<List<Contacts>> getContacts() async {
-//     List<Contacts> contacts = [];
-//     try {
-//       final response = await get(Uri.parse(Strings.contacts_url));
-//       if (200 == response.statusCode) {
-//         contacts = contactsFromJson(response.body);
-//         return contacts;
-//       } else {}
-//       return contacts;
-//     } catch (e) {}
-//     return contacts;
-//   }
-//}
-
